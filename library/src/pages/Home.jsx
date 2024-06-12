@@ -1,9 +1,11 @@
+import Booklist from "../components/Booklist"
+
 function Home() {
 
   return (
-    <div className='text-blue-500'>
-      hello world
-   </div>
+    <>
+      <Booklist/>
+    </>
   )
 }
 

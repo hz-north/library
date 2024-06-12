@@ -4,7 +4,7 @@ export default function Navbar() {
     <div>
       <nav>
         <ul className="flex justify-between items-center max-w-screen-md mx-auto py-10">
-          <li className="text-2xl font-bold"><Link to="/">BooK</Link></li>
+          <li className="text-3xl font-extrabold"><Link to="/">BooK</Link></li>
           <div className="flex justify-around gap-10  items-center">
             <li>
               <Link to="/create">
@@ -26,7 +26,6 @@ export default function Navbar() {
           </div>
         </ul>
       </nav>
-
     </div>
   )
 }
