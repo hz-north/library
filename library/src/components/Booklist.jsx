@@ -1,16 +1,35 @@
 import book from '../assets/images.png'
+import useFetch from '../hooks/useFetch';
 export default function Booklist() {
+  let { data: books, loading, error } = useFetch("http://localhost:3000/books");
+  if (error) {
+    return <p>{error}</p>
+  }
+
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-3">
-      {[1, 2, 3, 4,5].map(() => (
-        <div>
-          <img src={book} alt="" />
-          <div className='flex justify-center'>
-          <h1>Book Title</h1>
-          <p>Description</p>
-          </div>
-      </div>
-    ))}
-    </div>
+    <>
+      {loading && <p>Loading..</p>}
+
+      {/* booklist */}
+
+      {!!books && (
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-3">
+          {books.map((b) => (
+            <div className='p-4 border border-1' key={b.id}>
+              <img src={book} alt="" />
+              <div className='text-center space-y-2 mt-3'>
+                <h1>{b.title}</h1>
+                <p>{b.description}</p>
+              </div>
+              <div className='flex flex-wrap'>
+                {b.categories.map((categ) => (
+                  <span key={categ} className='mx-1 my-1 text-white rounded-full px-2 py-1 text-sm bg-blue-500'> { categ }</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </>
   )
 }
