@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import book from '../assets/images.png'
 import useFetch from '../hooks/useFetch';
 export default function Booklist() {
@@ -13,9 +14,10 @@ export default function Booklist() {
       {/* booklist */}
 
       {!!books && (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-3">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 my-3">
           {books.map((b) => (
-            <div className='p-4 border border-1' key={b.id}>
+            <Link to={`/books/${b.id}`} key={b.id}>
+              <div className='p-4 border border-1' key={b.id}>
               <img src={book} alt="" />
               <div className='text-center space-y-2 mt-3'>
                 <h1>{b.title}</h1>
@@ -27,6 +29,8 @@ export default function Booklist() {
                 ))}
               </div>
             </div>
+            </Link>
+
           ))}
         </div>
       )}
